@@ -1,0 +1,26 @@
+#!/bin/bash
+
+function check {
+  file Layers/*/* | grep -vE "PNG image data, 2905 x 2905, 8-bit/color RGBA, non-interlaced"
+}
+
+function gen {
+  npx ts-node ./src/gen.ts "$@"
+}
+
+function install {
+  npm install
+  npm install -g ts-node typescript
+}
+
+"$@"
+
+# ./images gen --max 10
+# ./images gen --recipe 0-0-0-0-0-0-0-0
+# ./images gen --resize 100x100
+
+# Remove old sources
+# rm -r Layers/*
+
+# Remove outputs
+# rm -r outputs/*
